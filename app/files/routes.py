@@ -52,8 +52,8 @@ def upload():
             f"File uploaded: {filename}"
         )
 
-        return "File uploaded successfully."
-
+        return redirect(url_for("auth.dashboard"))
+    
     return render_template("upload.html")
 
 @files.route("/download/<int:file_id>")

@@ -67,3 +67,5 @@ class AuditLog(db.Model):
         db.DateTime,
         nullable=False
     )
+
+    user = db.relationship("User", backref="audit_logs")

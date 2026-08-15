@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -40,6 +40,9 @@ def create_app():
 
     @app.route("/")
     def home():
-        return "Secure File Sharing Platform is running!"
-    
+        if current_user.is_authenticated:
+            return redirect(url_for("auth.dashboard"))
+
+        return redirect(url_for("auth.login"))
+        
     return app
