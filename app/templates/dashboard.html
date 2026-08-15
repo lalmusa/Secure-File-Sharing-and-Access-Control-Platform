@@ -11,10 +11,18 @@
 
     <h1>Welcome, {{ current_user.username }}!</h1>
 
-    <p>
-        <a href="{{ url_for('files.upload') }}">
-            Upload a File
-        </a>
+    {% if current_user.role == "admin" %}
+        <p>
+            <a href="{{ url_for('admin.admin_home') }}">
+                Admin Dashboard
+            </a>
+        </p>
+    {% endif %}
+
+    <p> 
+        <a href="{{ url_for('files.upload') }}"> 
+            Upload a File 
+        </a> 
     </p>
 
     <h2>Your Files</h2>
